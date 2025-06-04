@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'api_user/css/login.css' %}">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Correo electrónico" required><br>
+      <input type="password" id="password" placeholder="Contraseña" required><br>
+      <button type="submit">Ingresar</button>
+    </form>
+    <p id="error-msg" style="color: red;"></p>
+  </div>
+
+  <script src="{% static 'api_user/js/login.js' %}"></script>
+</body>
+</html>

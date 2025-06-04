@@ -1,0 +1,85 @@
+/* Estilos generales */
+body {
+  background: #000000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+/* Contenedor principal */
+form#signup-form {
+  background: #ffffff15;
+  padding: 40px 45px;
+  border-radius: 14px;
+  box-shadow: 0px 0px 12px 12px rgba(255, 255, 255, 0.3);
+  width: 400px;
+  max-width: 90vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Inputs */
+form#signup-form input[type="text"],
+form#signup-form input[type="email"],
+form#signup-form input[type="password"] {
+  padding: 12px 15px;
+  border: 1.8px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  background: transparent;
+  color: #fff;
+}
+
+form#signup-form input::placeholder {
+  color: #ddd;
+}
+
+form#signup-form input:focus {
+  border-color: #5b8def;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Botón */
+form#signup-form button {
+  padding: 13px 0;
+  background-color: #d13a3a;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+}
+
+form#signup-form button:hover {
+  background-color: #a92a2a;
+}
+
+/* Mensaje */
+#message {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 1rem;
+  min-height: 1.2rem;
+  color: #e74c3c;
+  font-weight: 600;
+}
