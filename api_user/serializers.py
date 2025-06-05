@@ -1,10 +1,16 @@
+# IMPORTS.
 from rest_framework import serializers
 from .models import CustomUser
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-
+# ===============================================
+#         SERIALIZER PARA REGISTRO DE USUARIOS
+# ===============================================
 class CustomUserSerializer(serializers.ModelSerializer):
-    
+    """
+    Serializer para crear y representar instancias del modelo CustomUser.
+    Utilizado principalmente en el endpoint /api/signup/ para registrar nuevos usuarios.
+    """
     class Meta:
         model = CustomUser
         fields = ['rut', 'email', 'password', 'nombre', 'apellido', 'direccion']
@@ -23,14 +29,20 @@ class CustomUserSerializer(serializers.ModelSerializer):
         )
         return user
 
-
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+# ===============================================
+#        SERIALIZER PERSONALIZADO PARA JWT
+# ===============================================
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    username_field = 'email'  # Le dices que use email como username
+    """
+    Serializer personalizado para la autenticación JWT.
+    Permite iniciar sesión usando el campo 'email' en lugar de 'username'.
+
+    Se utiliza en CustomLoginView para emitir access y refresh tokens.
+    """
+    username_field = 'email'
 
     def validate(self, attrs):
-        # attrs ya tiene 'email' y 'password' como claves, sólo pasas directamente:
         data = super().validate(attrs)
         data['email'] = attrs.get('email')
         return data

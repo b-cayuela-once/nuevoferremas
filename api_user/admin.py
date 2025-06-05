@@ -1,12 +1,16 @@
+# IMPORTS.
 from django.contrib import admin
 from .models import CustomUser
-from django.contrib.auth.models import Group
-from django.contrib.auth.admin import AdminPasswordChangeForm
-from django.utils.translation import gettext_lazy as _
 from django import forms
 
+# --------------------------------------
+# Formulario personalizado para crear usuarios.
+# --------------------------------------
 class CustomUserCreationForm(forms.ModelForm):
-    """Formulario para crear usuarios en el admin."""
+    """
+    Formulario usado para crear usuarios desde el panel de administración.
+    Requiere establecer manualmente la contraseña.
+    """
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
     class Meta:
@@ -20,16 +24,29 @@ class CustomUserCreationForm(forms.ModelForm):
             user.save()
         return user
 
+
+# --------------------------------------
+# Formulario personalizado para editar usuarios.
+# --------------------------------------
 class CustomUserChangeForm(forms.ModelForm):
-    """Formulario para editar usuarios en el admin."""
+    """
+    Formulario usado para editar usuarios existentes desde el panel de administración.
+    """
     class Meta:
         model = CustomUser
         fields = ('rut', 'email', 'nombre', 'apellido', 'direccion', 'is_active', 'is_staff', 'is_superuser')
 
+
+# --------------------------------------
+# Configuración del panel de administración para CustomUser.
+# --------------------------------------
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
-    add_form = CustomUserCreationForm
-    form = CustomUserChangeForm
+    """
+    Clase que configura la forma en que el modelo CustomUser se muestra en el panel de administración.
+    """
+    add_form = CustomUserCreationForm # Formulario al crear.
+    form = CustomUserChangeForm       # Formulario al editar.
     model = CustomUser
     list_display = ('rut', 'email', 'nombre', 'apellido', 'is_staff', 'is_superuser')
     list_filter = ('is_staff', 'is_superuser', 'is_active')
